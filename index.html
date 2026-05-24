@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUXE E-Commerce</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Shop</a>
+        <a href="#deals">Deals</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+    <div class="nav-logo">
+      <span class="logo-text">LUXE</span>
+      <span class="logo-dot">.</span>
+    </div>
+    <div class="nav-right">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Search products..." />
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" title="Wishlist"><i class="fas fa-heart"></i><span class="badge" id="wishlistCount">0</span></button>
+      <button class="icon-btn cart-btn" id="cartToggle" title="Cart"><i class="fas fa-shopping-bag"></i><span class="badge" id="cartCount">0</span></button>
+      <button class="icon-btn" title="Account"><i class="fas fa-user"></i></button>
+    </div>
+  </header>
+
+  <!-- SIDE CART DRAWER -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Bag <span id="cartItemCount">0 items</span></h3>
+      <button id="closeCart"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Your bag is empty</p>
+        <span>Add items to get started</span>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-subtotal">
+        <span>Subtotal</span><span id="cartSubtotal">₹0</span>
+      </div>
+      <div class="cart-subtotal">
+        <span>Shipping</span><span>Free</span>
+      </div>
+      <div class="cart-total">
+        <span>Total</span><span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-checkout">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
+      <button class="btn-continue" id="continueShopping">Continue Shopping</button>
+    </div>
+  </aside>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-slider" id="heroSlider">
+      <div class="slide active" style="--bg: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80')">
+        <div class="slide-content">
+          <span class="slide-tag">New Arrivals 2025</span>
+          <h1>Discover Your <br/><em>Perfect Style</em></h1>
+          <p>Curated collections for the modern connoisseur. Premium quality, unbeatable prices.</p>
+          <div class="hero-btns">
+            <a href="#products" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+            <a href="#categories" class="btn-ghost">View Collections</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide" style="--bg: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')">
+        <div class="slide-content">
+          <span class="slide-tag">Exclusive Deals</span>
+          <h1>Up to <em>50% Off</em><br/>Selected Items</h1>
+          <p>Limited time offers on our bestselling premium collections. Don't miss out.</p>
+          <div class="hero-btns">
+            <a href="#deals" class="btn-primary">Grab Deals <i class="fas fa-bolt"></i></a>
+            <a href="#products" class="btn-ghost">Browse All</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide" style="--bg: url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1600&q=80')">
+        <div class="slide-content">
+          <span class="slide-tag">Summer Collection</span>
+          <h1>Elevate Your <br/><em>Everyday Look</em></h1>
+          <p>Fresh arrivals for the season. Bold, beautiful, and built to impress.</p>
+          <div class="hero-btns">
+            <a href="#products" class="btn-primary">Explore Now <i class="fas fa-arrow-right"></i></a>
+            <a href="#about" class="btn-ghost">Our Story</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button class="slider-prev" id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+      <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-next" id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </section>
+
+ 
+
+  <!-- CATEGORIES -->
+  <section class="section categories-section" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Browse By</span>
+        <h2>Shop Categories</h2>
+        <p>Explore our curated collections</p>
+      </div>
+      <div class="categories-grid">
+        <div class="cat-card large" data-category="fashion" onclick="filterByCategory('fashion')">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Fashion"/>
+          <div class="cat-overlay"><h3>Fashion</h3></div>
+        </div>
+        <div class="cat-card" data-category="electronics" onclick="filterByCategory('electronics')">
+          <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=80" alt="Electronics"/>
+          <div class="cat-overlay"><h3>Electronics</h3></div>
+        </div>
+        <div class="cat-card" data-category="beauty" onclick="filterByCategory('beauty')">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&q=80" alt="Beauty"/>
+          <div class="cat-overlay"><h3>Beauty</h3></div>
+        </div>
+        <div class="cat-card" data-category="home" onclick="filterByCategory('home')">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="Home"/>
+          <div class="cat-overlay"><h3>Home & Living</h3></div>
+        </div>
+        <div class="cat-card" data-category="sports" onclick="filterByCategory('sports')">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Sports"/>
+          <div class="cat-overlay"><h3>Sports</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section products-section" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Collection</span>
+        <h2>Featured Products</h2>
+        <p>Handpicked just for you</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="fashion">Fashion</button>
+        <button class="filter-btn" data-filter="electronics">Electronics</button>
+        <button class="filter-btn" data-filter="beauty">Beauty</button>
+        <button class="filter-btn" data-filter="home">Home</button>
+        <button class="filter-btn" data-filter="sports">Sports</button>
+        <div class="sort-select">
+          <select id="sortSelect">
+            <option value="default">Sort By</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <!-- Products injected by JS -->
+      </div>
+      <div class="load-more-wrapper">
+        <button class="btn-outline" id="loadMoreBtn">Load More Products <i class="fas fa-chevron-down"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEAL OF THE DAY -->
+  <section class="deals-section" id="deals">
+    <div class="container">
+      <div class="deals-wrapper">
+        <div class="deals-text">
+          <span class="section-tag">Limited Time</span>
+          <h2>Deal of the Day</h2>
+          <p>Don't miss this incredible offer. Premium wireless headphones at an unbeatable price. Offer ends soon!</p>
+          <div class="countdown" id="countdown">
+            <div class="time-block"><span id="hours">00</span><label>Hours</label></div>
+            <div class="time-sep">:</div>
+            <div class="time-block"><span id="minutes">00</span><label>Minutes</label></div>
+            <div class="time-sep">:</div>
+            <div class="time-block"><span id="seconds">00</span><label>Seconds</label></div>
+          </div>
+          <div class="deal-price">
+            <span class="deal-original">₹8,999</span>
+            <span class="deal-current">₹4,499</span>
+            <span class="deal-badge">50% OFF</span>
+          </div>
+          <button class="btn-primary" onclick="addDealToCart()">Add to Bag <i class="fas fa-shopping-bag"></i></button>
+        </div>
+        <div class="deals-image">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" alt="Deal Product"/>
+          <div class="deal-tag">HOT DEAL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What They Say</span>
+        <h2>Customer Reviews</h2>
+        <p>Real experiences from real customers</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Absolutely love my purchase! The quality exceeded my expectations. Fast delivery and amazing packaging. Will definitely shop again!"</p>
+          <div class="testi-author"><img src="https://i.pravatar.cc/60?img=1" alt="Priya"/><div><strong>Priya Sharma</strong><span>Fashion Enthusiast</span></div></div>
+        </div>
+        <div class="testi-card featured">
+          <div class="testi-stars">★★★★★</div>
+          <p>"LUXE has completely changed how I shop online. The curation is impeccable, the prices are fair, and customer service is top-notch. Highly recommend to everyone!"</p>
+          <div class="testi-author"><img src="https://i.pravatar.cc/60?img=12" alt="Arjun"/><div><strong>Arjun Mehta</strong><span>Tech Professional</span></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Seamless shopping experience from start to finish. The products are exactly as described. My go-to store for everything premium!"</p>
+          <div class="testi-author"><img src="https://i.pravatar.cc/60?img=5" alt="Sneha"/><div><strong>Sneha Patel</strong><span>Interior Designer</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-wrapper">
+        <div class="newsletter-text">
+          <h2>Stay in the Loop</h2>
+          <p>Subscribe for exclusive deals, new arrivals & style tips</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email address" required/>
+          <button type="submit" class="btn-primary">Subscribe <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images">
+          <img class="about-img1" src="https://images.unsplash.com/photo-1560243563-062bfc001d68?w=600&q=80" alt="About"/>
+          <img class="about-img2" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80" alt="About2"/>
+        </div>
+        <div class="about-text">
+          <span class="section-tag">Our Story</span>
+          <h2>Crafted With <em>Passion</em></h2>
+          <p>LUXE was founded with a simple belief: premium products should be accessible to everyone. We curate the finest collections across fashion, electronics, beauty, and more — bringing world-class quality to your doorstep.</p>
+          <p>From our roots in Paralakhemundi, we've grown to serve over 50,000 customers across India, building lasting relationships based on trust, quality, and exceptional service.</p>
+          <div class="about-stats">
+            <div><strong>2019</strong><span>Founded</span></div>
+            <div><strong>50K+</strong><span>Customers</span></div>
+            <div><strong>98%</strong><span>Satisfaction</span></div>
+          </div>
+          <a href="#products" class="btn-primary">Shop Our Collection <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top container">
+      <div class="footer-brand">
+        <div class="footer-logo">LUXE<span>.</span></div>
+        <p>Your destination for premium products at unbeatable prices. Curated with care, delivered with love.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <a href="#">New Arrivals</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">Sale</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">All Products</a>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <a href="#">FAQs</a>
+        <a href="#">Shipping Info</a>
+        <a href="#">Returns & Exchanges</a>
+        <a href="#">Track Order</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Press</a>
+        <a href="#">Sustainability</a>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Paralakhemundi, Odisha 761200</p>
+        <p><i class="fas fa-phone"></i> +91 8093347288</p>
+        <p><i class="fas fa-envelope"></i> luxe8093@gmail.com</p>
+        <div class="payment-icons">
+          <span>We Accept:</span>
+          <div class="pay-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-paypal"></i>
+            <i class="fab fa-google-pay"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2025 LUXE Store. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="product-modal" id="productModal">
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+
+  <script src="script.js"></script>
+</body>
+</html>
